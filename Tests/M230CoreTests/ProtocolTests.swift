@@ -71,7 +71,11 @@ final class ProtocolTests: XCTestCase {
     mixed[9] = 12
     mixed[13] = 5
     XCTAssertEqual(try CustomEQ.decode(mixed), [0, 12, 5, 6, 6, 6])
-    let records = (0..<6).reversed().flatMap { Array(neutral[(2 + $0 * 4)..<(6 + $0 * 4)]) }
+    var records: [UInt8] = []
+    for band in (0..<6).reversed() {
+      let offset = 2 + band * 4
+      records.append(contentsOf: neutral[offset..<(offset + 4)])
+    }
     XCTAssertEqual(try CustomEQ.decode([2, 6] + records + [0, 0, 0, 0, 65]), [6, 6, 6, 6, 6, 6])
   }
 
