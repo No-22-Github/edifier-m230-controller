@@ -1,0 +1,13 @@
+.DS_Store
+.build/
+.swiftpm/
+dist/
+work/
+outputs/
+Resources/M230II.png
+*.log
+.env
+.env.*
+*.p12
+*.p8
+*.key

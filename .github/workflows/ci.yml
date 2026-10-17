@@ -1,0 +1,15 @@
+name: macOS build and tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test protocol and EQ codec (no Bluetooth hardware)
+        run: swift test
+      - name: Build native controller
+        run: swift build --configuration release --product M230Controller
